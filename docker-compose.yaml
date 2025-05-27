@@ -1,0 +1,12 @@
+version:  "3.8"
+
+services:
+  language:
+    build: .
+    container_name: PuddingMoon
+    tty: true
+    working_dir: /src
+    command: bash
+    volumes:
+      - ./src:/src
+      - ./tests:/tests
