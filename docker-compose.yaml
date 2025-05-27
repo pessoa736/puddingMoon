@@ -1,7 +1,7 @@
 version:  "3.8"
 
 services:
-  language:
+  PuddingMoon:
     build: .
     container_name: PuddingMoon
     tty: true
