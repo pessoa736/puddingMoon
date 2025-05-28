@@ -1,5 +1,5 @@
-a =0
+a:number =0
 b = 1
 c = 2
 
-name = "davi"
+name :string = "davi"

@@ -7,11 +7,11 @@ local log = {
         print("Total messages: " .. #log._messages)	
     end,
     save = function ()
-        local base = "/src/logs/log"
+        local base = "./logs/log"
 
-        local file = io.open(base, "w")
+        local file = io.open(base, "a+")
         if not file then
-            print("Error opening file for writing: " .. filename)
+            print("Error opening file for writing: ")
             return
         end
 
