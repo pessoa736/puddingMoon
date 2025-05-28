@@ -1,5 +1,5 @@
-a:number =0
-b = 1
-c = 2
+a:int   = 0
+b:float = 1
+c:compx  = 2i
 
 name :string = "davi"

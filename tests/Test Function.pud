@@ -1,0 +1,5 @@
+n1 : int = 2
+
+soma: int = function(a: int, b: int)
+    return a + b
+end
