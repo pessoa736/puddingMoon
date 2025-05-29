@@ -1,43 +1,46 @@
 log = require("log")
+Tokens = require("tokens")
 
+-- a "lib"
 local interpreter = {}
+
 
 function is_var(line)
     return string.match(line, "^(%w+)%s*:%s*%w+%s*=%s*.+") ~= nil
 end
-
 function is_func(line)
     return line:match("^%w+%s*:%s*%w+%s*=%s*function%s*%b()") or
            line:match("^%w+%s*=%s*function%s*%b()")
 end
 
+
 function interpreter.set_var(s, line)
-    local name, type_, value
+    local name, type_var, value
     local removeR = line:gsub("\r", "")
 
-    name, type_, value = string.match(removeR, "^(%w+)%s*:%s*(%w+)%s*=%s*(.+)")
+    name, type_var, value = string.match(removeR, "^(%w+)%s*:%s*(%w+)%s*=%s*(.+)")
 
-    if not (name and type_ and value) then
+    if not (name and type_var and value) then
         log("Erro ao interpretar a linha:", line)
         return nil
-    elseif name and value and not type_ then
+    elseif name and value and not type_var then
         log("var " .. name .. " não tem tipo definido")
     end
 
-    local token = interpreter:varToken(name, type_, value)
+    local token = Tokens:var(name, type_var, value)
     log(token)
     return token
 end
 
 function interpreter.set_funct(s, content)
-    local name, type_, params, body = content:match("^(%w+)%s*:%s*(%w+)%s*=%s*function%s*(%b())%s*(.-)%s*end$")
+    local name, type_return, params, body = content:match("^(%w+)%s*:%s*(%w+)%s*=%s*function%s*(%b())%s*(.-)%s*end$")
     
-    if not (name and type_ and params and body) then
+    if not (name and type_return and params and body) then
         log("Erro ao interpretar a função:", content)
         return nil
     end
 
-    local token = interpreter:functToken(name, type_, params, body)
+    local token = Tokens:funct(name, type_return, params, body)
     log(token)
     return token
 end
@@ -60,34 +63,6 @@ function interpreter.closeFile(s, file)
     end
 end
 
-function create_token()
-    return setmetatable({}, {
-        __tostring = function(self)
-            local str = "Token ("
-            for k, v in pairs(self) do
-                str = str .. k .. ": " .. v .. ", "
-            end
-            return str .. ")"
-        end
-    })
-end
-
-function interpreter.varToken(s, name, type, value)
-    local token = create_token()
-    token.name = name
-    token.type = type
-    token.value = value 
-    return token
-end
-
-function interpreter.functToken(s, name, type, params, body)
-    local token = create_token()
-    token.name = name
-    token.type = type
-    token.params = params
-    token.body = body
-    return token
-end
 
 function interpreter.interpret(s, content)
     local tokens = {}
