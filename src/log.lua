@@ -1,11 +1,13 @@
 local log = {
     _messages = {},
+    
     show = function ()
         for i, v in ipairs(log._messages) do
             print(v)
         end 
         print("Total messages: " .. #log._messages)	
     end,
+
     save = function ()
         local base = "./logs/log"
 
@@ -16,20 +18,25 @@ local log = {
         end
 
         for i, v in ipairs(log._messages) do
+            if i <= 1 then
+                file:write("\n\n--\t\t" ..  os.date() .. "\t\t--\n") 
+            end
             file:write(v .. "\n")
         end
 
         file:close()
         print("Log saved")
     end,
+    
     add = function (...)
         local message = ""
+
 
         for i, v in ipairs({...}) do
             message = message .. " " .. tostring(v)
         end
         
-        local text = "[ ".. os.date() .." ]".. message
+        local text = "[ ".. #log._messages .." ]".. message
         
         table.insert(log._messages, text)
     end

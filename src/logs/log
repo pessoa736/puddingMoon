@@ -1,3 +1,7 @@
-[ Wed May 28 20:51:07 2025 ] Token (body: return a + b, name: soma, type: int, params: (a: int, b: int), )
-[ Wed May 28 20:52:42 2025 ] Token (value: 2, name: n1, type: int, )
-[ Wed May 28 20:52:42 2025 ] Token (body: return a + b, name: soma, type: int, params: (a: int, b: int), )
+
+
+--		Thu May 29 01:23:57 2025		--
+[ 0 ] Token (type_: var, name: n1, type_var: int, value: 2, )
+[ 1 ] Token (type_: function, name: soma, body: return a + b, type_return: int, params: (a: int, b: int), )
+[ 2 ] adicionado ao ambiente global: n1
+[ 3 ] adicionado ao ambiente global: soma

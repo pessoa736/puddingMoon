@@ -1,9 +1,9 @@
 version:  "3.8"
 
 services:
-  PuddingMoon:
+  puddingmoon:
     build: .
-    container_name: PuddingMoon
+    container_name: puddingmoon
     tty: true
     working_dir: /src
     command: bash
