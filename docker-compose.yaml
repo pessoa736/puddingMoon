@@ -5,8 +5,7 @@ services:
     build: .
     container_name: puddingmoon
     tty: true
-    working_dir: /src
+    working_dir: /pm
     command: bash
     volumes:
-      - ./src:/src
-      - ./tests:/tests
+      - .:/pm

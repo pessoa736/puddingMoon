@@ -1,0 +1,35 @@
+
+
+--		Thu May 29 01:23:57 2025		--
+[ 0 ] Token (type_: var, name: n1, type_var: int, value: 2, )
+[ 1 ] Token (type_: function, name: soma, body: return a + b, type_return: int, params: (a: int, b: int), )
+[ 2 ] adicionado ao ambiente global: n1
+[ 3 ] adicionado ao ambiente global: soma
+
+
+--		Sun Jun 22 19:23:06 2025		--
+[ 0 ] Token (1: var, 2: n1, 3: int, 4: 2)
+[ 1 ] Token (1: function, 2: soma, 3: int, 4: (a: int, b: int), 5: return a + b)
+[ 2 ] adicionado ao ambiente global: var
+[ 3 ] adicionado ao ambiente global: function
+
+
+--		Sun Jun 22 19:25:57 2025		--
+[ 0 ] Token (1: var, 2: n1, 3: int, 4: 2)
+[ 1 ] Token (1: function, 2: soma, 3: int, 4: (a: int, b: int), 5: return a + b)
+[ 2 ] adicionado ao ambiente global: var
+[ 3 ] adicionado ao ambiente global: function
+
+
+--		Sun Jun 22 19:39:21 2025		--
+[ 0 ] Token (1: var, 2: n1, 3: int, 4: 2)
+[ 1 ] Token (1: function, 2: soma, 3: int, 4: (a: int, b: int), 5: return a + b)
+[ 2 ] adicionado ao ambiente global: var
+[ 3 ] adicionado ao ambiente global: function
+
+
+--		Sun Jun 22 19:50:01 2025		--
+[ 0 ] Token (1: var, 2: n1, 3: int, 4: 2)
+[ 1 ] Token (1: function, 2: soma, 3: int, 4: (a: int, b: int), 5: return a + b)
+[ 2 ] adicionado ao ambiente global: n1
+[ 3 ] adicionado ao ambiente global: soma
