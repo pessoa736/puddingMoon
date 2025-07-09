@@ -46,12 +46,14 @@ end
 
 
 if DEBUG then
+    log()
+    log("--\t\t test de verificação de tokem por patern \t\t--")
+    log()
     local a = M.fspt("test(a, b)=>{ return a+b }", "function")
-    log(tokens.validate(a))
+    log("tokem validado: "..tostring(tokens.validate(a)))
+    log()
     local a = M.fspt("int a = 1", "var")
-    log(tokens.validate(a))
+    log("tokem validado: "..tostring(tokens.validate(a)))
     log.show()
 end
-
-
 return M

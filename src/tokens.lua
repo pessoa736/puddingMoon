@@ -1,10 +1,10 @@
-log = require("log")
-local serialize = require("serializer")
+log = log or require("log")
+serialize = serialize or require("serializer")
 
-DEBUG = false
+DEBUG = DEBUG or true
 
-local fator_random=(((os.clock()*1000000)//1)-1500)//10
-
+local fator_random=math.random(0, 10000) + (os.clock()*10000)//10
+log(fator_random)
 local function crypt(str)
     local res = ""
     for i=1, #str do
@@ -38,8 +38,11 @@ function validate(token)
 end
 
 if DEBUG then
+    log()
+    log("--\t\ttest de criação de tokens\t\t-- ")
+    log()
     local T = create(2, 3, 4)
-    log(T)
+    log("token apos validação: " .. tostring(validate(T)))
     log.show()
 end
 
