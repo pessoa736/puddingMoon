@@ -1,37 +1,40 @@
--- patterns.lua
--- Responsável pelos padrões de parsing
+local tokens = require("tokens")
+
+DEBUG = false
 
 local M = {}
-
 M.paterns = {}
 
 function M.add_patern(nome, patern)
-    M.paterns[nome] = {
-        patern = patern
-    }
+    M.paterns[nome] = tokens.create(patern)
 end
 
 function M.get_patern(nome)
-    return M.paterns[nome].patern
+    return tokens.validate(M.paterns[nome])[1]
 end
 
 -- Definição dos padrões
-M.add_patern("var", "^%s*(%w*)%s*:*%s*(%w+)%s*=%s*(.+)%s*")
+M.add_patern("var", "^%s*(%w*)%s*(%w+)%s*=%s*(.+)%s*")
 M.add_patern("function", "^%s*(%w+)%s*%((.-)%)%s*=>%s*{(.-)}%s*")
-M.add_patern("function_generic", "^%s*(%w+)%s*%((.-)%)%s*<([^>]*)>%s*=>%s*{(.-)}%s*")
-M.add_patern("interface", "^inte (%w+)%s*({%s*.+%s*})%s*")
-M.add_patern("interface_atr", "^%s*{%s*(%w+)%s*(%w+)%s*}%s*")
-M.add_patern("if", "^%s*if%s*%((.-)%)%s*{(.-)}%s*$")
-M.add_patern("loop", "^%s*loop%s*%((.-)%)%s*{(.-)}%s*$")
 
 
 function M.fspt(str, patern_name)
-    return table.pack(
+    return tokens.create(
         patern_name,
-        str:match(
+        string.match(
+            str,
             M.get_patern(patern_name)
         )
     )
 end
+
+
+if DEBUG then
+    local a = M.fspt("test(a, b)=>{ return a+b }", "function")
+    print(tokens.validate(a))
+    local a = M.fspt("int a = 1", "var")
+    print(tokens.validate(a))
+end
+
 
 return M

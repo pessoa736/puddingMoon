@@ -8,4 +8,4 @@ services:
     working_dir: /pm
     command: bash
     volumes:
-      - .:/pm
+      - ./src:/pm
