@@ -1,7 +1,7 @@
 log = log or require("log")
 serialize = serialize or require("serializer")
 
-DEBUG = DEBUG or true
+DEBUG = DEBUG or false
 
 local fator_random=math.random(0, 10000) + (os.clock()*10000)//10
 log(fator_random)

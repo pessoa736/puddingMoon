@@ -16,8 +16,8 @@ function M.get_paterns(nome)
 end
 
 -- Definição dos padrões
-M.add_patern("var", "^%s*(%w*)%s*(%w+)%s*=%s*(.+)%s*")
-M.add_patern("function", "^%s*(%w+)%s*%((.-)%)%s*=>%s*{(.-)}%s*")
+M.add_patern("var", "^%s*(%w*)%s*(%w+)%s*=%s*(.+)%s*;")
+M.add_patern("function", "^%s*(%w+)%s*%((.-)%)%s*=>%s*(.-)%s*;")
 
 function M.check(str, patern_name)
     local patern = M.get_paterns(patern_name)
