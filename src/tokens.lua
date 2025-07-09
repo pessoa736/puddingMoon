@@ -1,3 +1,4 @@
+log = require("log")
 local serialize = require("serializer")
 
 DEBUG = false
@@ -25,8 +26,10 @@ end
 function create(...)
     local args= setmetatable({...},{ __tostring = serialize })
     local str = tostring(args)
+    local tokem = crypt(str)
+    log("tokem criado " .. tokem)
 
-    return crypt(str)
+    return tokem
 end
 
 function validate(token)
@@ -36,7 +39,8 @@ end
 
 if DEBUG then
     local T = create(2, 3, 4)
-    print(T)
+    log(T)
+    log.show()
 end
 
 return {

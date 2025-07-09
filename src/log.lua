@@ -40,16 +40,6 @@ local log = {
         
         table.insert(log._messages, text)
     end,
-    assert = function (condition, ...)
-        if not condition then
-            local message = "Assertion failed: "
-            for i, v in ipairs({...}) do
-                message = message .. " " .. tostring(v)
-            end
-            log.add(message)
-            error(message)
-        end
-    end,
 } 
 
 return setmetatable(log, {
