@@ -5,6 +5,7 @@ DEBUG = DEBUG or false
 
 local fator_random=math.random(0, 10000) + (os.clock()*10000)//10
 log(fator_random)
+
 local function crypt(str)
     local res = ""
     for i=1, #str do
@@ -24,7 +25,13 @@ local function descrypt(str)
 end
 
 function create(...)
-    local args= setmetatable({...},{ __tostring = serialize })
+    local args={...}
+    for i, v in ipairs(args) do
+        if type(v) == "table" then
+            args[i] = setmetatable(v, { __tostring = serialize })
+        end
+    end
+    local args= setmetatable(args,{ __tostring = serialize })
     local str = tostring(args)
     local tokem = crypt(str)
     log("tokem criado " .. tokem)
